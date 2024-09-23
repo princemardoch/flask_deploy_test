@@ -7,9 +7,6 @@ app = Flask(__name__)
 app.url_map.strict_slashes = False
 
 app.config['SECRET_KEY'] = 'ieA6Fbj3oidmG3BYqbPZwydfAgM'
-app.config['SESSION_COOKIE_SECURE'] = True
-app.config['SESSION_COOKIE_HTTPONLY'] = True
-app.config['SESSION_COOKIE_SAMESITE'] = 'Lax'
 
 app.permanent_session_lifetime = timedelta(100)
 
