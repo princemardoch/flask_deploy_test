@@ -1,5 +1,4 @@
 from datetime import timedelta
-import secrets
 
 from flask import Flask, session
 
@@ -7,14 +6,12 @@ app = Flask(__name__)
 
 app.url_map.strict_slashes = False
 
-app.config['SECRET_KEY'] = secrets.token_urlsafe(30)
+app.config['SECRET_KEY'] = 'ieA6Fbj3oidmG3BYqbPZwydfAgM'
 app.config['SESSION_COOKIE_SECURE'] = True
 app.config['SESSION_COOKIE_HTTPONLY'] = True
 app.config['SESSION_COOKIE_SAMESITE'] = 'Lax'
 
-@app.before_request
-def make_session_permanent():
-    session.permanent = True
+app.permanent_session_lifetime = timedelta(100)
 
 from .user.userr import user
 from .auth.authr import auth
