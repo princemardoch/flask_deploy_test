@@ -3,10 +3,9 @@ from flask import Blueprint, render_template, redirect, url_for, request, sessio
 auth = Blueprint('auth', __name__)
 
 @auth.before_request
-def verif_login():
-    # Rediriger vers la page de login si l'utilisateur n'est pas connecté
-    if not session.get('user_is_login') and request.endpoint != 'auth.login':
-        return redirect(url_for('auth.login'))
+def verif_not_login():
+    if session.get('user_is_login') and request.endpoint == 'auth.login':
+        return redirect(url_for('user.islogin'))
 
 @auth.route('/login', methods=['POST', 'GET'])
 def login():
